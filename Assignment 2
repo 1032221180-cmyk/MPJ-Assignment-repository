@@ -1,0 +1,72 @@
+/ Base Class
+class Employee {
+    protected String name;
+    protected double salary;
+
+    Employee(String name, double salary) {
+        this.name = name;
+        this.salary = salary;
+    }
+
+    // Method to display salary
+    public void DisplaySalary() {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Salary: " + salary);
+    }
+
+    public void Calculate_Salary() {
+        // To be overridden
+    }
+}
+
+// Derived Class 1
+class FullTimeEmployee extends Employee {
+
+    FullTimeEmployee(String name, double salary) {
+        super(name, salary);
+    }
+
+    @Override
+    public void Calculate_Salary() {
+        System.out.println("\n--- Full Time Employee ---");
+        System.out.println("Before Hike:");
+        DisplaySalary();
+
+        salary = salary + (salary * 0.50);
+
+        System.out.println("After 50% Hike:");
+        DisplaySalary();
+    }
+}
+
+// Derived Class 2
+class InternEmployee extends Employee {
+
+    InternEmployee(String name, double salary) {
+        super(name, salary);
+    }
+
+    @Override
+    public void Calculate_Salary() {
+        System.out.println("\n--- Intern Employee ---");
+        System.out.println("Before Hike:");
+        DisplaySalary();
+
+        salary = salary + (salary * 0.25);
+
+        System.out.println("After 25% Hike:");
+        DisplaySalary();
+    }
+}
+
+// Main class (must match file name in many compilers)
+public class Main {
+    public static void main(String[] args) {
+
+        FullTimeEmployee fte = new FullTimeEmployee("Alice", 50000);
+        InternEmployee intern = new InternEmployee("Bob", 20000);
+
+        fte.Calculate_Salary();
+        intern.Calculate_Salary();
+    }
+}
